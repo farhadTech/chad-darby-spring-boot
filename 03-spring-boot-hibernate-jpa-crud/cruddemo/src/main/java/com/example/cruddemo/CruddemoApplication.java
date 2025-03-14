@@ -7,6 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 @SpringBootApplication
 public class CruddemoApplication {
 
@@ -18,8 +20,18 @@ public class CruddemoApplication {
 		return runner -> {
 //			createStudent(studentDAO);
 //			createMultipleStudents(studentDAO);
-			readStudent(studentDAO);
+//			readStudent(studentDAO);
+			queryForStudents(studentDAO);
 		};
+	}
+
+	private void queryForStudents(StudentDAO studentDAO) {
+		// get list of students
+		List<Student> theStudents = studentDAO.findAll();
+		// display list of students
+		for(Student student : theStudents) {
+			System.out.println(student);
+		}
 	}
 
 	private void readStudent(StudentDAO studentDAO) {
@@ -45,8 +57,8 @@ public class CruddemoApplication {
 	private void createMultipleStudents(StudentDAO studentDAO) {
 		System.out.println("Creating multiple students");
 		Student tempStudent1 = new Student("John", "Doe", "johndoe@gmail.com");
-		Student tempStudent2 = new Student("Jane", "Doe", "janedoe@gmail.com");
-		Student tempStudent3 = new Student("Jack", "Doe", "jackdoe@gmail.com");
+		Student tempStudent2 = new Student("Jane", "Austen", "janedoe@gmail.com");
+		Student tempStudent3 = new Student("Jack", "Smith", "jackdoe@gmail.com");
 
 		System.out.println("Saving the students");
 		studentDAO.save(tempStudent1);
