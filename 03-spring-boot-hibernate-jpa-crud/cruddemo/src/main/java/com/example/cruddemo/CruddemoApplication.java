@@ -14,21 +14,26 @@ public class CruddemoApplication {
 		SpringApplication.run(CruddemoApplication.class, args);
 	}
 	@Bean
-	public CommandLineRunner commandLineRunner(String[] args) {
+	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		return runner -> {
-			System.out.println("Hello World");
+			createStudent(studentDAO);
 		};
 	}
 
 	private void createStudent(StudentDAO studentDAO) {
 		// create the student object
-		System.out.println("creating new student");
-		Student tempStudent = new Student("Paul", "Doe", "Paul@gmail.com");
+		System.out.println("Creating the new student object...");
+		Student tempStudent = new Student("Paul", "Doe", "paul@gmail.com");
 
 		// save the student object
-		System.out.println("Saving the student");
+		System.out.println("Saving the new student object...");
 		studentDAO.save(tempStudent);
-		System.out.println("Student saved. Generated Id: " + tempStudent.getId());
+
+		// display id of the saved student
+		System.out.println("Successfully created the new student object. generated id:" + tempStudent.getId());
+
 	}
+
+
 }
 
