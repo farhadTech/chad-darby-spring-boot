@@ -23,4 +23,8 @@ public class StudentDAOImple implements StudentDAO{
     public void save(Student theStudent) {
         entityManager.persist(theStudent);
     }
+
+    public Student findById(Long id) {
+        return entityManager.find(Student.class, id);
+    }
 }
