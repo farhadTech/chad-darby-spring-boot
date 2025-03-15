@@ -2,10 +2,9 @@ package com.farhad.demo.rest;
 
 import com.farhad.demo.entity.Student;
 import jakarta.annotation.PostConstruct;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,5 +37,18 @@ public class StudentRestController {
             throw new StudentNotFoundException("Student not found - " + studentId);
         }
         return theStudents.get(studentId);
+    }
+
+    // add exception handler method
+    @ExceptionHandler
+    public ResponseEntity<StudentErrorResponse> handleException(StudentNotFoundException e) {
+        // create a student error response
+        StudentErrorResponse error = new StudentErrorResponse();
+        error.setStatus(HttpStatus.NOT_FOUND.value());
+        error.setMessage(e.getMessage());
+        error.setTimestamp(System.currentTimeMillis());
+
+        // return response entity
+        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
 }
