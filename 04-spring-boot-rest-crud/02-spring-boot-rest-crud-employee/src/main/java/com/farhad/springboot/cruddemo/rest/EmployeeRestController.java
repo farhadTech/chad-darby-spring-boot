@@ -26,10 +26,27 @@ public class EmployeeRestController {
         }
         return theEmployee;
     }
-
+    // add mapping for POST /employees - save new employees
     @PostMapping("/employees")
     public Employee addEmployee(@RequestBody Employee theEmployee) {
         return employeeService.save(theEmployee);
     }
-}
 
+    // add mapping for PUT /employees - update existing employees
+    @PutMapping("/employees")
+    public Employee updateEmployee(@RequestBody Employee theEmployee) {
+        return employeeService.save(theEmployee);
+    }
+
+    // add mapping for DELETE /employees/{employeeId} - delete employee
+    @DeleteMapping("/employees/{employeeId}")
+    public String deleteEmployee(@PathVariable Long employeeId) {
+        Employee tempEmployee = employeeService.findById(employeeId);
+        // throw new exception if null
+        if(tempEmployee == null) {
+            throw new RuntimeException("Employee not found - " + employeeId);
+        }
+        employeeService.deleteById(employeeId);
+        return "Employee deleted - " + employeeId;
+    }
+}
