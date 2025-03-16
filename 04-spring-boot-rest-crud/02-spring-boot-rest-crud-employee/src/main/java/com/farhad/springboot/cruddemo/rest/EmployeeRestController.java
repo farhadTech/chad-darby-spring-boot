@@ -1,6 +1,5 @@
 package com.farhad.springboot.cruddemo.rest;
 
-import com.farhad.springboot.cruddemo.dao.EmployeeDAO;
 import com.farhad.springboot.cruddemo.entity.Employee;
 import com.farhad.springboot.cruddemo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +29,7 @@ public class EmployeeRestController {
 
     @PostMapping("/employees")
     public Employee addEmployee(@RequestBody Employee theEmployee) {
-        // also just in case they pass an id JSON ... set id to 0.
-        // this is to force a save of new item ... instead of update
-        theEmployee.setId(0L);
         return employeeService.save(theEmployee);
     }
 }
+
