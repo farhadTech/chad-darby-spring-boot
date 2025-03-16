@@ -4,10 +4,7 @@ import com.farhad.springboot.cruddemo.dao.EmployeeDAO;
 import com.farhad.springboot.cruddemo.entity.Employee;
 import com.farhad.springboot.cruddemo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,4 +28,11 @@ public class EmployeeRestController {
         return theEmployee;
     }
 
+    @PostMapping("/employees")
+    public Employee addEmployee(@RequestBody Employee theEmployee) {
+        // also just in case they pass an id JSON ... set id to 0.
+        // this is to force a save of new item ... instead of update
+        theEmployee.setId(0L);
+        return employeeService.save(theEmployee);
+    }
 }
