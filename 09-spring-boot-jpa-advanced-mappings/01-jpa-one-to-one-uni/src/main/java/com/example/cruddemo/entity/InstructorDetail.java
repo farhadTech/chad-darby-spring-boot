@@ -29,7 +29,6 @@ public class InstructorDetail {
         this.hobby = hobby;
     }
     // generate getter/setter methods
-
     public String getYoutubeChannel() {
         return youtubeChannel;
     }
@@ -47,7 +46,6 @@ public class InstructorDetail {
     }
 
     // generate toString method
-
     @Override
     public String toString() {
         return "InstructorDetail{" +

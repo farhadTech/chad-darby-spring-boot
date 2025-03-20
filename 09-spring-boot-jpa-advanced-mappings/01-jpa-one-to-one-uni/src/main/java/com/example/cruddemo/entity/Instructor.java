@@ -33,7 +33,6 @@ public class Instructor {
     }
 
     // generate getters and setters
-
     public int getId() {
         return id;
     }
@@ -75,7 +74,6 @@ public class Instructor {
     }
 
     // generate toString method
-
     @Override
     public String toString() {
         return "Instructor{" +
