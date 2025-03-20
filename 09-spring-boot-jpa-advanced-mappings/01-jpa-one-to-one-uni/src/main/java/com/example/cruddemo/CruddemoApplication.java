@@ -18,17 +18,36 @@ public class CruddemoApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(AppDao appDao) {
 		return runner -> {
-			createInstructor(appDao);
+//			createInstructor(appDao);
+			findInstructor(appDao);
 		};
 	}
 
+	private void findInstructor(AppDao appDao) {
+		int theId = 2;
+		System.out.println("Finding instructor with id " + theId);
+
+		Instructor theInstructor = appDao.findById(theId);
+		System.out.println("theInstructor = " + theInstructor);
+		System.out.println("The associated instructorDetail only: " + theInstructor.getInstructorDetail());
+	}
+
 	private void createInstructor(AppDao appDao) {
+
+//		// create the instructor
+//		Instructor tempInstructor = new Instructor("Chad", "Darby", "darby@gmail.com");
+//
+//		// create the instructor detail
+//		InstructorDetail tempInstructorDetail =
+//				new InstructorDetail("http://www.luv2code.com/youtube", "luv 2 code");
+
+
 		// create the instructor
-		Instructor tempInstructor = new Instructor("Chad", "Darby", "darby@gmail.com");
+		Instructor tempInstructor = new Instructor("Madhu", "Patel", "madhu@gmail.com");
 
 		// create the instructor detail
 		InstructorDetail tempInstructorDetail =
-				new InstructorDetail("http://www.luv2code.com/youtube", "luv 2 code");
+				new InstructorDetail("http://www.madhupatel.com/youtube", "swimming");
 
 		// associate the objects
 		tempInstructor.setInstructorDetail(tempInstructorDetail);
