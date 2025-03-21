@@ -22,8 +22,18 @@ public class CruddemoApplication {
 //			findInstructor(appDao);
 //			deleteInstructor(appDao);
 
-			findInstructorDetail(appDao);
+//			findInstructorDetail(appDao);
+			deleteInstructorDetail(appDao);
 		};
+	}
+
+	private void deleteInstructorDetail(AppDao appDao) {
+		// delete the instructorDetail with the instructor
+		int theId = 2;
+		System.out.println("Deleting instructor detail with instructor id: " + theId);
+
+		appDao.deleteInstructorDetailById(theId);
+		System.out.println("Deleted instructor detail with instructor id: " + theId);
 	}
 
 	private void findInstructorDetail(AppDao appDao) {
