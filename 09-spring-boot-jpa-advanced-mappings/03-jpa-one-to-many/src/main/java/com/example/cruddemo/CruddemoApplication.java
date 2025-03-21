@@ -1,6 +1,7 @@
 package com.example.cruddemo;
 
 import com.example.cruddemo.dao.AppDao;
+import com.example.cruddemo.entity.Course;
 import com.example.cruddemo.entity.Instructor;
 import com.example.cruddemo.entity.InstructorDetail;
 import org.springframework.boot.CommandLineRunner;
@@ -26,7 +27,6 @@ public class CruddemoApplication {
 
 			createInstructorWithCourses(appDao);
 		};
-
 	}
 
 	private void createInstructorWithCourses(AppDao appDao) {
@@ -38,6 +38,24 @@ public class CruddemoApplication {
 
 		// associate the objects
 		tempInstructor.setInstructorDetail(tempInstructorDetail);
+
+		// create some courses
+		Course tempCourse1 = new Course("Air Guitar - The Ultimate Guide");
+		Course tempCourse2 = new Course("The Pinball Masterclass");
+
+		// add courses to instructor
+		tempInstructor.addCourse(tempCourse1);
+		tempInstructor.addCourse(tempCourse2);
+
+		// save the instructor
+
+		//
+ 		// Note: This will also save the courses because of CascadeType.PERSIST
+ 		//
+		System.out.println("Saving Instructor: " + tempInstructor);
+		System.out.println("The Courses: " + tempInstructor.getCourses());
+		appDao.save(tempInstructor);
+		System.out.println("Saving Instructor: " + tempInstructor);
 	}
 
 	private void deleteInstructorDetail(AppDao appDao) {
