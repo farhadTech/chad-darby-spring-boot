@@ -90,6 +90,7 @@ public class AppDAOImpl implements AppDao{
     }
 
     @Override
+    @Transactional
     public void updateCourse(Course course) {
         entityManager.merge(course);
     }
