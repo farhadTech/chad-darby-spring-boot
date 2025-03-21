@@ -22,7 +22,8 @@ public class InstructorDetail {
     private String hobby;
 
     // add @OneToOne annotation
-    @OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "instructorDetail", cascade =
+            {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
     private Instructor instructor;
 
     // create constructors
