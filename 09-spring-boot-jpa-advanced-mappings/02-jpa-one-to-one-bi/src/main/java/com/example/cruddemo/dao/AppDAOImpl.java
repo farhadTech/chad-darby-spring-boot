@@ -1,6 +1,7 @@
 package com.example.cruddemo.dao;
 
 import com.example.cruddemo.entity.Instructor;
+import com.example.cruddemo.entity.InstructorDetail;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -35,6 +36,13 @@ public class AppDAOImpl implements AppDao{
         entityManager.remove(instructor);
         return "Entity manager has been deleted";
     }
+
+    @Override
+    public InstructorDetail findInstructorDetailById(int theId) {
+        return entityManager.find(InstructorDetail.class, theId);
+    }
 }
+
+
 
 
