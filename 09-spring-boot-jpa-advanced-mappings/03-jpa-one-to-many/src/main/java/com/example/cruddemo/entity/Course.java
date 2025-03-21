@@ -50,8 +50,15 @@ public class Course {
         this.title = title;
     }
 
-    // define toString() method
+    public Instructor getInstructor() {
+        return instructor;
+    }
 
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
+    }
+
+    // define toString() method
     @Override
     public String toString() {
         return "Course{" +
