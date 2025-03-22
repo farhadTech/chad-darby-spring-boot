@@ -27,14 +27,6 @@ public class Course {
     @JoinColumn(name = "course_id")
     private List<Review> reviews;
 
-    // add a convenience method
-    public void add(Review tempReview) {
-        if(reviews == null) {
-            reviews = new ArrayList<>();
-        }
-        reviews.add(tempReview);
-    }
-
     // define constructors
     public Course() {
     }
@@ -74,6 +66,14 @@ public class Course {
         this.instructor = instructor;
     }
 
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
+
     // define toString() method
     @Override
     public String toString() {
@@ -82,7 +82,18 @@ public class Course {
                 ", title='" + title + '\'' +
                 '}';
     }
+    // add a convenience method for adding reviews
+    public void addReview(Review review) {
+        if(reviews == null) {
+            reviews = new ArrayList<>();
+        }
+        reviews.add(review);
+    }
 }
+
+
+
+
 
 
 
