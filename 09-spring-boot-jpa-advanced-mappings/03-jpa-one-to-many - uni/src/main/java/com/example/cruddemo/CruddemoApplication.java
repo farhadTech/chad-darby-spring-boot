@@ -21,9 +21,23 @@ public class CruddemoApplication {
 
 	@Bean
 	public CommandLineRunner commandLineRunner(AppDao appDao) {
+
 		return runner -> {
-			createCourseAndReviews(appDao);
+//			createCourseAndReviews(appDao);
+			retrieveCourseAndReviews(appDao);
 		};
+	}
+
+	private void retrieveCourseAndReviews(AppDao appDao) {
+		// get the course and reviews
+		int theId = 10;
+		Course tempCourse = appDao.findCourseAndReviewsByCourseId(theId);
+
+		// print the course
+		System.out.println(tempCourse);
+
+		// print the reviews
+		System.out.println(tempCourse.getReviews());
 	}
 
 	private void createCourseAndReviews(AppDao appDao) {
@@ -33,7 +47,6 @@ public class CruddemoApplication {
 		tempCourse.addReview(new Review("Great course ... loved it!"));
 		tempCourse.addReview(new Review("Cool course ... Job well done!"));
 		tempCourse.addReview(new Review("What a dumb course, you are an idiot!"));
-		tempCourse.addReview(new Review("Great course ... loved it!"));
 
 		// save the course ... and leverage the cascade all
 		System.out.println("Saving course " + tempCourse);
