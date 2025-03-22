@@ -2,8 +2,6 @@ package com.example.cruddemo.entity;
 
 import jakarta.persistence.*;
 
-import java.util.List;
-
 @Entity
 @Table(name = "review")
 public class Review {
