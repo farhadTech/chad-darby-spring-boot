@@ -23,9 +23,7 @@ public class CruddemoApplication {
 	public CommandLineRunner commandLineRunner(AppDao appDao) {
 
 		return runner -> {
-//			createCourseAndReviews(appDao);
-//			retrieveCourseAndReviews(appDao);
-			deleteCourseAndReviews(appDao);
+
 		};
 	}
 
