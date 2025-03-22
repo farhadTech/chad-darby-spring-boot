@@ -9,7 +9,7 @@ import java.util.List;
 public interface AppDao {
     void save(Instructor theInstructor);
     Instructor findById(int theId);
-    String deleteById(int theId);
+    String deleteInstructorById(int theId);
 
     InstructorDetail findInstructorDetailById(int theId);
     String deleteInstructorDetailById(int theId);
@@ -21,5 +21,6 @@ public interface AppDao {
 
     void updateCourse(Course course);
     Course findCourseById(int theId);
+
 }
 

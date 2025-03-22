@@ -34,10 +34,20 @@ public class AppDAOImpl implements AppDao{
 
     @Override
     @Transactional
-    public String deleteById(int theId) {
-        Instructor instructor = entityManager.find(Instructor.class, theId);
-        entityManager.remove(instructor);
-        return "Entity manager has been deleted";
+    public String deleteInstructorById(int theId) {
+        // retrieve the instructor
+        Instructor tempInstructor = entityManager.find(Instructor.class, theId);
+
+        // get the courses
+        List<Course> courses = tempInstructor.getCourses();
+
+        //break the associations of all courses for instructor
+        for(Course tempCourse : courses) {
+            tempCourse.setInstructor(null);
+        }
+        // delete the instructor
+        entityManager.remove(tempInstructor);
+        return "Instructor deleted";
     }
 
     @Override

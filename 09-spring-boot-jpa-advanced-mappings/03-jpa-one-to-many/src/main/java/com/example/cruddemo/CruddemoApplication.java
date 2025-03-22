@@ -23,7 +23,7 @@ public class CruddemoApplication {
 		return runner -> {
 //			createInstructor(appDao);
 //			findInstructor(appDao);
-//			deleteInstructor(appDao);
+			deleteInstructorById(appDao);
 //			findInstructorDetail(appDao);
 //			deleteInstructorDetail(appDao);
 //			createInstructorWithCourses(appDao);
@@ -31,15 +31,16 @@ public class CruddemoApplication {
 //			findCoursesForInstructor(appDao);
 //			findInstructorWithCoursesJoinFetch(appDao);
 //			updateInstructor(appDao);
-			updateCourse(appDao);
+//			updateCourse(appDao);
 		};
 	}
 
 	private void updateCourse(AppDao appDao) {
 		int theId = 10;
+		// find the course
 		System.out.println("Finding Course id: " + theId);
 		Course tempCourse = appDao.findCourseById(theId);
-
+		// update the course
 		System.out.println("Updating Course id: " + theId);
 		tempCourse.setTitle("Enjoy the Simple Things.");
 		appDao.updateCourse(tempCourse);
@@ -142,11 +143,11 @@ public class CruddemoApplication {
 		System.out.println("The associated instructor: " + InstructorDetails.getInstructor());
 	}
 
-	private void deleteInstructor(AppDao appDao) {
+	private void deleteInstructorById(AppDao appDao) {
 		int theId = 1;
 		System.out.println("Deleting instructor with id " + theId);
  
-		appDao.deleteById(theId);
+		appDao.deleteInstructorById(theId);
 		System.out.println("Deleted instructor " + theId);
 	}
 
