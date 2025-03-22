@@ -1,4 +1,5 @@
 package com.example.cruddemo.entity;
+import com.example.cruddemo.entity.Student;
 
 import jakarta.persistence.*;
 
@@ -26,6 +27,16 @@ public class Course {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "course_id")
     private List<Review> reviews;
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinTable(
+            name = "course_student",
+            joinColumns = @JoinColumn(name = "course_id"),
+            inverseJoinColumns = @JoinColumn(name = "student_id")
+    )
+    private List<Student> students;
 
     // define constructors
     public Course() {
@@ -66,12 +77,33 @@ public class Course {
         this.instructor = instructor;
     }
 
-    public List<Review> getReviews() {
-        return reviews;
-    }
 
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
+    // add a convenience method for adding reviews
+    public void addReview(Review review) {
+        if(reviews == null) {
+            reviews = new ArrayList<>();
+        }
+        reviews.add(review);
+    }
+
+    // add a convenience method for adding students
+    public void addStudent(Student student) {
+        if(students == null) {
+            students = new ArrayList<> ();
+        }
+        students.add(student);
     }
 
     // define toString() method
@@ -81,13 +113,6 @@ public class Course {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 '}';
-    }
-    // add a convenience method for adding reviews
-    public void addReview(Review review) {
-        if(reviews == null) {
-            reviews = new ArrayList<>();
-        }
-        reviews.add(review);
     }
 }
 
