@@ -24,13 +24,6 @@ public class Student {
     cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}, mappedBy = "students")
     private List<Course> courses;
 
-    public List<Course> getCourses() {
-        return courses;
-    }
-
-    public void setCourses(List<Course> courses) {
-        this.courses = courses;
-    }
     // define constructors
 
     public Student() {
@@ -75,6 +68,14 @@ public class Student {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
     // add convenience method add course
     public void addCourse(Course theCourse) {
         if(courses == null) {
@@ -96,6 +97,7 @@ public class Student {
                 '}';
     }
 }
+
 
 
 
