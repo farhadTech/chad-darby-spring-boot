@@ -10,6 +10,6 @@ public class DemoController {
     @GetMapping("/hello")
     public String sayHello(Model theModel) {
         theModel.addAttribute("theDate", java.time.LocalDate.now());
-        return "helloworld";
+        return "helloworld.backup";
     }
 }
