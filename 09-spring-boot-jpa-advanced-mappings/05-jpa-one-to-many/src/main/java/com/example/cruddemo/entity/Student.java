@@ -1,10 +1,12 @@
 package com.example.cruddemo.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table(name = "student")
 public class Student {
     // define fields and annotate the fields
     @Id
@@ -18,6 +20,17 @@ public class Student {
     @Column(name = "email")
     private String email;
 
+    @ManyToMany(fetch = FetchType.LAZY,
+    cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}, mappedBy = "students")
+    private List<Course> courses;
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
     // define constructors
 
     public Student() {
@@ -61,6 +74,14 @@ public class Student {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+    // add convenience method add course
+    public void addCourse(Course theCourse) {
+        if(courses == null) {
+            courses = new ArrayList<Course>();
+        }
+        courses.add(theCourse);
+        theCourse.addStudent(this);
     }
 
     // define toString() method
