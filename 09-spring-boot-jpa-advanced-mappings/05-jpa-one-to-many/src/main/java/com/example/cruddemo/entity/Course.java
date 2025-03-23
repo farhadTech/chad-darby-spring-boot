@@ -38,6 +38,7 @@ public class Course {
     )
     private List<Student> students;
 
+
     // define constructors
     public Course() {
     }
@@ -76,8 +77,9 @@ public class Course {
     public void setInstructor(Instructor instructor) {
         this.instructor = instructor;
     }
-
-
+    public List<Review> getReviews() {
+        return reviews;
+    }
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
     }
