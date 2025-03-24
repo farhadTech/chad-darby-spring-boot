@@ -4,6 +4,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HelloWorldController {
@@ -37,4 +38,31 @@ public class HelloWorldController {
         model.addAttribute("message", result);
         return "helloworld";
     }
+
+    @RequestMapping("/processFormVersionThree")
+    public String pocessFormVersionThree(
+            @RequestParam("studentName") String theName, Model model) {
+            /*
+                Behind the scene:
+                * Spring will read param from request: studentName
+                * Bind it to the variable name
+            */
+
+        // read the request parameter from the HTML form.
+        theName = theName.toUpperCase();
+
+        // create the message
+        String result = "Hey my friend from v3!! " + theName;
+
+        // add message to the model
+        model.addAttribute("message", result);
+        return "helloworld";
+    }
 }
+
+
+
+
+
+
+
