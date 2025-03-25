@@ -1,5 +1,8 @@
 package com.example.thymeleafdemo.model;
 
+import java.util.Collections;
+import java.util.List;
+
 public class Student {
     private String firstName;
 
@@ -8,6 +11,8 @@ public class Student {
     private String country;
 
     private String favoriteLanguage;
+
+    private List<String> favoriteOs;
 
     public Student(){
 
@@ -43,6 +48,14 @@ public class Student {
 
     public void setFavoriteLanguage(String favoriteLanguage) {
         this.favoriteLanguage = favoriteLanguage;
+    }
+
+    public List<String> getFavoriteOs() {
+        return favoriteOs;
+    }
+
+    public void setFavoriteOs(List<String> favoriteOs) {
+        this.favoriteOs = favoriteOs;
     }
 }
 
