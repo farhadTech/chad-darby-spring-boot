@@ -1,6 +1,7 @@
 package com.example.spring.demo.mvc.validation;
 
 import jakarta.validation.Constraint;
+import jakarta.validation.Payload;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -16,4 +17,11 @@ public @interface CourseCode {
 
     // define default error message
     public String message() default "must start with LUV";
+
+    // define default group
+    public Class<?>[] groups() default {};
+
+    // define default payloads
+    public Class<? extends Payload>[] payload() default {};
+
 }
