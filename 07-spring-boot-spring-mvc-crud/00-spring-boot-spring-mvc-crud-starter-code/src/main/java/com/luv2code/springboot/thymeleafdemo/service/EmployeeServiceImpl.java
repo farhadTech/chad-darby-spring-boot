@@ -2,6 +2,7 @@ package com.luv2code.springboot.thymeleafdemo.service;
 
 import com.luv2code.springboot.thymeleafdemo.dao.EmployeeRepository;
 import com.luv2code.springboot.thymeleafdemo.entity.Employee;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<Employee> findAll() {
-        return employeeRepository.findAll();
+        return employeeRepository.findAllByOrderByLastNameAsc();
     }
 
     @Override
@@ -41,11 +42,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    @Transactional
     public Employee save(Employee theEmployee) {
         return employeeRepository.save(theEmployee);
     }
 
     @Override
+    @Transactional
     public void deleteById(int theId) {
         employeeRepository.deleteById(theId);
     }
