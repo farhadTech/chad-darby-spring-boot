@@ -42,6 +42,15 @@ public class EmployeeController {
         return "employees/employee-form";
     }
 
+    @PostMapping("/save")
+    public String saveEmployee(@ModelAttribute("employee") Employee theEmployee) {
+
+        // save the employee
+        employeeService.save(theEmployee);
+
+        // use a redirect to prevent duplicate submissions.
+        return "redirect:/employees/list";
+    }
     @GetMapping("/showFormForUpdate")
     public String showFormForUpdate(@RequestParam("employeeId") int theId, Model theModel) {
         // get the employee from the service
@@ -53,14 +62,14 @@ public class EmployeeController {
         // send over to our form
         return "employees/employee-form";
     }
-    
-    @PostMapping("/save")
-    public String saveEmployee(@ModelAttribute("employee") Employee theEmployee) {
 
-        // save the employee
-        employeeService.save(theEmployee);
 
-        // use a redirect to prevent duplicate submissions.
+    @GetMapping("/delete")
+    public String delete(@RequestParam("employeeId") int theId) {
+        // delete the employee
+        employeeService.deleteById(theId);
+
+        // redirect to /employees/list
         return "redirect:/employees/list";
     }
 }
